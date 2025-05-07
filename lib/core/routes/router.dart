@@ -1,5 +1,3 @@
-import 'package:challenge_tpc/features/task/presentation/pages/home_page.dart';
-
 import 'routes.dart';
 import '../../features/task/presentation/cubit/task_cubit.dart';
 import '../../features/task/presentation/pages/task_page.dart';
@@ -13,16 +11,31 @@ class AppRouter {
 
     switch (settings.name) {
       case Routes.taskPage:
-        return MaterialPageRoute(
-          builder: (context) => BlocProvider.value(
-            value: taskCubit..allTasks(),
-            child: const TaskPage(),
-          ),
+        return PageRouteBuilder(
+          settings: settings,
+          pageBuilder: (context, animation, secondaryAnimation) {
+            return BlocProvider.value(
+              value: taskCubit..allTasks(),
+              child: const TaskPage(),
+            );
+          },
+          transitionsBuilder: (
+            context,
+            animation,
+            secondaryAnimation,
+            child,
+          ) {
+            return child;
+          },
         );
-      case Routes.homePage:
+
       default:
         return MaterialPageRoute(
-          builder: (context) => const HomePage(),
+          builder: (context) => const Scaffold(
+            body: Center(
+              child: Text('Sem dados'),
+            ),
+          ),
         );
     }
   }

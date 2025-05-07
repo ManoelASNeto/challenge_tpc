@@ -1,6 +1,10 @@
+import 'package:challenge_tpc/core/utils/app_colors.dart';
+import 'package:challenge_tpc/core/utils/app_strings.dart';
+import 'package:challenge_tpc/core/utils/theme_extensions.dart';
+import 'package:challenge_tpc/features/task/domain/entities/task_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../domain/entities/task_entity.dart';
+import 'package:lottie/lottie.dart';
 import '../cubit/task_cubit.dart';
 
 class TaskPage extends StatelessWidget {
@@ -9,40 +13,91 @@ class TaskPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Minhas Tarefas')),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Text(
+          AppStrings.myTasks,
+          style: context.titleStyle,
+        ),
+        centerTitle: true,
+      ),
       body: BlocBuilder<TaskCubit, TaskState>(
         builder: (context, state) {
           if (state is TaskLoading) {
             return const Center(child: CircularProgressIndicator());
           }
 
-          if (state is TaskError) {
-            return Center(child: Text(state.msgError ?? ''));
-          }
-
           if (state is TaskLoaded) {
             final tasks = state.tasks;
 
             if (tasks.isEmpty) {
-              return const Center(child: Text('Nenhuma tarefa ainda.'));
+              return Center(
+                child: Column(
+                  children: [
+                    Lottie.asset(AppStrings.animationTodo),
+                    Text(
+                      'Adicione uma nova Tarefa!',
+                      style: context.subtitleTextStyle,
+                    ),
+                  ],
+                ),
+              );
             }
 
             return ListView.builder(
               itemCount: tasks.length,
-              itemBuilder: (context, index) {
+              itemBuilder: (_, index) {
                 final task = tasks[index];
-                return ListTile(
-                  title: Text(task.title),
-                  trailing: Icon(
-                    task.isDone ? Icons.check_circle : Icons.radio_button_unchecked,
-                    color: task.isDone ? Colors.green : null,
+
+                return AnimatedContainer(
+                  margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  duration: const Duration(
+                    milliseconds: 600,
                   ),
-                  onLongPress: () {
-                    context.read<TaskCubit>().deleteTask(task.id);
-                  },
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryColor,
+                    borderRadius: BorderRadius.circular(8),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black,
+                        offset: const Offset(0, 4),
+                        blurRadius: 10,
+                      ),
+                    ],
+                  ),
+                  child: Dismissible(
+                    key: ValueKey(task.id),
+                    direction: DismissDirection.endToStart,
+                    background: Container(
+                      color: Colors.red,
+                      alignment: Alignment.centerRight,
+                      padding: const EdgeInsets.only(right: 20),
+                      child: const Icon(Icons.delete, color: Colors.white),
+                    ),
+                    onDismissed: (_) {
+                      context.read<TaskCubit>().deleteTask(task.id);
+                    },
+                    child: CheckboxListTile(
+                      title: Text(
+                        task.title,
+                        style: TextStyle(
+                          color: Colors.white,
+                          decoration: task.isDone ? TextDecoration.lineThrough : TextDecoration.none,
+                        ),
+                      ),
+                      value: task.isDone,
+                      onChanged: (_) {
+                        context.read<TaskCubit>().toggleTask(task);
+                      },
+                    ),
+                  ),
                 );
               },
             );
+          }
+
+          if (state is TaskError) {
+            return Center(child: Text('Erro: ${state.msgError ?? ''}'));
           }
 
           return const SizedBox.shrink();
@@ -61,7 +116,10 @@ class TaskPage extends StatelessWidget {
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
-        title: const Text('Nova Tarefa'),
+        title: Text(
+          'Nova Tarefa',
+          style: context.titleStyle,
+        ),
         content: TextField(
           controller: controller,
           decoration: const InputDecoration(hintText: 'Digite o título da tarefa'),

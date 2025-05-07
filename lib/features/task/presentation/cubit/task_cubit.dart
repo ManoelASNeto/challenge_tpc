@@ -33,6 +33,16 @@ class TaskCubit extends Cubit<TaskState> {
     }
   }
 
+  Future<void> toggleTask(TaskEntity task) async {
+    try {
+      final updateTask = task.copyWith(isDone: !task.isDone);
+      await taskUsecase.updateTask(updateTask);
+      await allTasks();
+    } catch (e) {
+      emit(TaskError(msgError: '${AppStrings.taskErrorUpdate} ${e.toString()}'));
+    }
+  }
+
   Future<void> deleteTask(String id) async {
     try {
       await taskUsecase.deleteTask(id);

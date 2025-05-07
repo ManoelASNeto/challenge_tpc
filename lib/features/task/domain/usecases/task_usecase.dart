@@ -25,6 +25,14 @@ class TaskUsecase {
     }
   }
 
+  Future<void> updateTask(TaskEntity task) async {
+    try {
+      await taskRepository.updateTask(task);
+    } catch (error) {
+      rethrow;
+    }
+  }
+
   Future<void> deleteTask(String id) async {
     try {
       await taskRepository.deleteTask(id);

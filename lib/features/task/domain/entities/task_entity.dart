@@ -8,8 +8,16 @@ class TaskEntity extends Equatable {
   const TaskEntity({
     required this.id,
     required this.title,
-    required this.isDone,
+    this.isDone = false,
   });
+
+  TaskEntity copyWith({bool? isDone}) {
+    return TaskEntity(
+      id: id,
+      title: title,
+      isDone: isDone ?? this.isDone,
+    );
+  }
 
   @override
   List<Object?> get props => [

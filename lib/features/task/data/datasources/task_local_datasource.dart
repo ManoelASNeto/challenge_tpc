@@ -6,6 +6,7 @@ abstract class TaskLocalDatasource {
   Future<void> addTask(TaskModel task);
   Future<List<TaskModel>> getAllTasks();
   Future<void> deleteTask(String id);
+  Future<void> updateTask(String id, TaskModel task);
 }
 
 class TaskLocalDatasourceImpl implements TaskLocalDatasource {
@@ -28,5 +29,10 @@ class TaskLocalDatasourceImpl implements TaskLocalDatasource {
   @override
   Future<List<TaskModel>> getAllTasks() async {
     return box.values.toList();
+  }
+
+  @override
+  Future<void> updateTask(String id, TaskModel task) async {
+    await box.put(id, task);
   }
 }

@@ -25,4 +25,9 @@ class TaskRepositoryImpl implements TaskRepository {
   Future<List<TaskEntity>> getAllTasks() async {
     return await taskLocalDatasource.getAllTasks();
   }
+
+  @override
+  Future<void> updateTask(TaskEntity task) async {
+    await taskLocalDatasource.updateTask(task.id, TaskModel.fromEntity(task));
+  }
 }
