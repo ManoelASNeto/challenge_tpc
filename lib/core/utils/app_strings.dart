@@ -5,6 +5,7 @@ class AppStrings {
   static const taskErrorUpdate = 'Erro ao atualizar as tarefas:';
 
   static const title = 'Listas de Tarefas';
+  static const task = 'Tarefas';
   static const myTasks = 'Minhas Tarefas';
   static const tasksDeleteds = 'Taferas Excluídas';
   static const addNewTask = 'Adicione uma nova Tarefa!';
@@ -13,4 +14,8 @@ class AppStrings {
 
   static const cancel = 'Cancelar';
   static const add = 'Adicionar';
+  static const alertDelete = 'Excluir todas as tarefas?';
+  static const confirmDelete = 'Essa ação removerá permanentemente todas as tarefas excluídas.';
+  static const deleteAll = 'Excluir';
+  static const trash = 'Lixeira';
 }

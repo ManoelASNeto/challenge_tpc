@@ -1,3 +1,6 @@
+import '../../../../core/utils/apps_animation.dart';
+import 'package:lottie/lottie.dart';
+
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/theme_extensions.dart';
@@ -40,7 +43,18 @@ class _TasksDeletedPageState extends State<TasksDeletedPage> {
             final deleted = state.tasks;
 
             if (deleted.isEmpty) {
-              return const Center(child: Text('Nenhuma tarefa excluída'));
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 200,
+                      width: 200,
+                      child: Lottie.asset(AppAnimations.animationTrash),
+                    ),
+                  ],
+                ),
+              );
             }
 
             return ListView.builder(

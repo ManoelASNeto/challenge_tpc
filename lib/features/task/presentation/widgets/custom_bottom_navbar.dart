@@ -1,19 +1,7 @@
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:challenge_tpc/core/utils/app_colors.dart';
+import 'package:challenge_tpc/core/utils/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mdi_icons/flutter_mdi_icons.dart';
-
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Icon(Mdi.accessPoint),
-      ),
-    );
-  }
-}
 
 class CustomBottomNavbar extends StatelessWidget {
   final int activeIndex;
@@ -25,19 +13,25 @@ class CustomBottomNavbar extends StatelessWidget {
     required this.onTap,
   });
 
-  static final List<IconData> iconList = [
-    Mdi.formatListText,
-    Mdi.playlistRemove,
-  ];
-
   @override
   Widget build(BuildContext context) {
-    return AnimatedBottomNavigationBar(
-      icons: iconList,
-      activeIndex: activeIndex,
-      gapLocation: GapLocation.center,
-      notchSmoothness: NotchSmoothness.sharpEdge,
+    return BottomNavigationBar(
+      currentIndex: activeIndex,
       onTap: onTap,
+      selectedItemColor: AppColors.primaryColor,
+      unselectedItemColor: Colors.grey,
+      backgroundColor: AppColors.backgroundColor,
+      type: BottomNavigationBarType.fixed,
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Mdi.formatListText),
+          label: AppStrings.task,
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Mdi.deleteSweepOutline),
+          label: AppStrings.trash,
+        ),
+      ],
     );
   }
 }

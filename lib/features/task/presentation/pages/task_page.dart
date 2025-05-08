@@ -38,6 +38,7 @@ class _TaskPageState extends State<TaskPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        backgroundColor: AppColors.primaryColor,
         title: Text(
           AppStrings.title,
           style: context.titleStyle,
@@ -119,12 +120,12 @@ class _TaskPageState extends State<TaskPage> {
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
-        title: const Text('Excluir todas as tarefas?'),
-        content: const Text('Essa ação removerá permanentemente todas as tarefas excluídas.'),
+        title: const Text(AppStrings.alertDelete),
+        content: const Text(AppStrings.confirmDelete),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Cancelar'),
+            child: const Text(AppStrings.cancel),
           ),
           ElevatedButton(
             onPressed: () {
@@ -132,7 +133,7 @@ class _TaskPageState extends State<TaskPage> {
               Navigator.of(context).pop();
             },
             style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-            child: const Text('Excluir tudo'),
+            child: const Text(AppStrings.deleteAll),
           ),
         ],
       ),
