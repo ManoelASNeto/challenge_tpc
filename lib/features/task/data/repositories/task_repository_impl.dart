@@ -9,6 +9,11 @@ class TaskRepositoryImpl implements TaskRepository {
   TaskRepositoryImpl({
     required this.taskLocalDatasource,
   });
+  @override
+  Future<void> addTaskToDeletedBox(TaskEntity task) async {
+    final model = TaskModel.fromEntity(task);
+    await taskLocalDatasource.addTaskToDeletedBox(model);
+  }
 
   @override
   Future<void> addTask(TaskEntity task) async {
@@ -17,8 +22,18 @@ class TaskRepositoryImpl implements TaskRepository {
   }
 
   @override
-  Future<void> deleteTask(String id) async {
-    await taskLocalDatasource.deleteTask(id);
+  Future<void> deleteAllTasks() async {
+    await taskLocalDatasource.deleteAllTasks();
+  }
+
+  @override
+  Future<void> deleteTasksById(String id) async {
+    await taskLocalDatasource.deleteTasksById(id);
+  }
+
+  @override
+  Future<List<TaskEntity>> getAllDeletedBox() async {
+    return await taskLocalDatasource.getAllDeletedBox();
   }
 
   @override

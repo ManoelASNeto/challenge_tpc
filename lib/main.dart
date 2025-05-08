@@ -15,7 +15,10 @@ void main() async {
   Hive.registerAdapter(TaskModelAdapter());
 
   final taskBox = await Hive.openBox<TaskModel>('tasks');
-  di.sl.registerSingleton<Box<TaskModel>>(taskBox);
+  final deletedTaskBox = await Hive.openBox<TaskModel>('deleted_tasks');
+
+  di.sl.registerSingleton<Box<TaskModel>>(taskBox, instanceName: 'tasksBox');
+  di.sl.registerSingleton<Box<TaskModel>>(deletedTaskBox, instanceName: 'deletedTasksBox');
 
   await di.init();
   runApp(MyApp());

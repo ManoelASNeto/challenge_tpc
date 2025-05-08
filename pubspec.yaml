@@ -42,6 +42,8 @@ dependencies:
   path_provider: ^2.1.5
   get_it: ^7.7.0
   lottie: ^3.3.1
+  animated_bottom_navigation_bar: ^1.4.0
+  flutter_mdi_icons: ^0.1.3
 
 
 dev_dependencies:
@@ -86,10 +88,10 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Todo_font
+    - family: PlaywriteDanmarkLoopet
       fonts:
-        - asset: assets/fonts/todo_font.ttf
-        - asset: assets/fonts/assets/fonts/todo_font_Light.ttf
+        - asset: assets/fonts/PlaywriteDKLoopet-VariableFont_wght.ttf
+      
        
   #   - family: Trajan Pro
   #     fonts:

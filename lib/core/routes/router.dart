@@ -1,9 +1,11 @@
-import 'routes.dart';
-import '../../features/task/presentation/cubit/task_cubit.dart';
-import '../../features/task/presentation/pages/task_page.dart';
-import '../../injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../features/task/presentation/cubit/task_cubit.dart';
+import '../../features/task/presentation/pages/task_page.dart';
+import '../../features/task/presentation/pages/tasks_deleted_page.dart';
+import '../../injection_container.dart';
+import 'routes.dart';
 
 class AppRouter {
   Route generateRoutes(RouteSettings settings) {
@@ -15,8 +17,8 @@ class AppRouter {
           settings: settings,
           pageBuilder: (context, animation, secondaryAnimation) {
             return BlocProvider.value(
-              value: taskCubit..allTasks(),
-              child: const TaskPage(),
+              value: taskCubit..getAllTasks(),
+              child: TaskPage(),
             );
           },
           transitionsBuilder: (
@@ -28,7 +30,19 @@ class AppRouter {
             return child;
           },
         );
-
+      case Routes.deletedTaskPage:
+        return PageRouteBuilder(
+            settings: settings,
+            pageBuilder: (
+              context,
+              animation,
+              secondaryAnimation,
+            ) {
+              return BlocProvider.value(
+                value: taskCubit..getAllDeletedBox(),
+                child: const TasksDeletedPage(),
+              );
+            });
       default:
         return MaterialPageRoute(
           builder: (context) => const Scaffold(
