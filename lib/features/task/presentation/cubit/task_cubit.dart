@@ -23,8 +23,8 @@ class TaskCubit extends Cubit<TaskState> {
   final UpdateTaskUsecase updateTaskUsecase;
 
   TaskCubit(
-    this.addTaskUsecase,
     this.addTaskToDeletedBoxUsecase,
+    this.addTaskUsecase,
     this.deletedAllTasks,
     this.deletedTasksById,
     this.getAllDeletedBox,
