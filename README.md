@@ -49,7 +49,7 @@ lib/
 ## 🚀 Como Instalar o Flutter e Rodar o Projeto
 
 ### 1. Instalar o Flutter
-Certifique-se de instalar o Flutter na versão **3.10.5** (ou superior). Siga os passos abaixo:
+Certifique-se de instalar o Flutter na versão **3.27.2** (ou superior). Siga os passos abaixo:
 
 - [Guia oficial de instalação do Flutter](https://docs.flutter.dev/get-started/install)
 - Após a instalação, verifique se o Flutter está configurado corretamente:
@@ -60,8 +60,8 @@ Certifique-se de instalar o Flutter na versão **3.10.5** (ou superior). Siga os
 ### 2. Clonar o Repositório
 Clone este repositório em sua máquina local:
 ```bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
-cd seu-repositorio
+git clone https://github.com/ManoelASNeto/challenge_tpc.git
+cd challenge_tpc
 ```
 
 ### 3. Instalar Dependências
@@ -148,15 +148,33 @@ Para gerar a cobertura de testes com o **lcov**, siga os passos abaixo:
    open coverage/html/index.html
    ```
 
+![Captura de Tela 2025-05-09 às 00 28 07](https://github.com/user-attachments/assets/c9fe4e77-9fcc-4f20-92b4-2cd0c10969c7)
+
 ---
 
 ## 📸 Prints ou Vídeo
 
 ### Tela de Lista de Tarefas
-![Task List Page](https://via.placeholder.com/800x400?text=Task+List+Page)
+## iOS
+<img width="300" alt="Screenshot 2025-05-08 at 23 55 55" src="https://github.com/user-attachments/assets/876d1aec-c833-41aa-b9b7-ca38cc4b6dc7" />
+<img width="300" alt="Screenshot 2025-05-08 at 23 56 38" src="https://github.com/user-attachments/assets/92cb60b7-153f-4d8b-9159-7ebb56bc3258" />
+<img width="300" alt="Screenshot 2025-05-08 at 23 56 59" src="https://github.com/user-attachments/assets/8b41a380-64ef-4f18-b06e-8fd98cb0e70f" />
+
+## Android
+<img width="300" alt="Captura de Tela 2025-05-09 às 00 34 59" src="https://github.com/user-attachments/assets/babe9818-cdb9-423c-a38a-fea0b6386d17" />
+<img width="300" alt="Captura de Tela 2025-05-09 às 00 35 53" src="https://github.com/user-attachments/assets/c773a755-ae86-4ce8-a358-bcab62d29d07" />
+<img width="300" alt="Captura de Tela 2025-05-09 às 00 37 09" src="https://github.com/user-attachments/assets/b43f2e91-944e-4605-9059-15314fee706c" />
 
 ### Tela de Tarefas Excluídas
-![Tasks Deleted Page](https://via.placeholder.com/800x400?text=Tasks+Deleted+Page)
+## iOS
+<img width="300" alt="Screenshot 2025-05-08 at 23 55 59" src="https://github.com/user-attachments/assets/8d54798d-a0e7-4158-976e-bf273b69ace0" />
+<img width="300" alt="Screenshot 2025-05-08 at 23 57 30" src="https://github.com/user-attachments/assets/8fa2efaf-2ab3-4511-b82b-d8fface1b682" />
+<img width="300" alt="Screenshot 2025-05-08 at 23 57 34" src="https://github.com/user-attachments/assets/58fc42f5-d2bd-4e65-b878-418d768545f4" />
+
+## Android
+<img width="300" alt="Captura de Tela 2025-05-09 às 00 37 34" src="https://github.com/user-attachments/assets/235939eb-9b9d-4fa8-a6c2-0c1478b42364" />
+<img width="300" alt="Captura de Tela 2025-05-09 às 00 38 29" src="https://github.com/user-attachments/assets/bafeaf2a-c2a8-439f-96ef-49faecaf287c" />
+<img width="300" alt="Captura de Tela 2025-05-09 às 00 38 50" src="https://github.com/user-attachments/assets/6a21f8b6-3975-4fbd-902a-2c3cbaabda08" />
 
 ---
 
