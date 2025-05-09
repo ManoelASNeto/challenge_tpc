@@ -1,24 +1,39 @@
+import 'package:challenge_tpc/features/task/data/models/task_model.dart';
+
+import 'core/routes/router.dart';
+import 'core/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
+
+import 'injection_container.dart' as di;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final appDocDir = await getApplicationDocumentsDirectory();
   Hive.init(appDocDir.path);
-  runApp(const MyApp());
+  Hive.registerAdapter(TaskModelAdapter());
+
+  final taskBox = await Hive.openBox<TaskModel>('tasks');
+  final deletedTaskBox = await Hive.openBox<TaskModel>('deleted_tasks');
+
+  di.sl.registerSingleton<Box<TaskModel>>(taskBox, instanceName: 'tasksBox');
+  di.sl.registerSingleton<Box<TaskModel>>(deletedTaskBox, instanceName: 'deletedTasksBox');
+
+  await di.init();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final _router = AppRouter();
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(''),
-      ),
-      body: Container(),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      onGenerateRoute: _router.generateRoutes,
+      initialRoute: Routes.taskPage,
     );
   }
 }
